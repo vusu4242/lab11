@@ -6,7 +6,8 @@ class Node:
 class MyQueue(object):
 
     def __init__(self):
-        
+        self.tail = None
+        self.head = None
 
     def push(self, x):
         """
