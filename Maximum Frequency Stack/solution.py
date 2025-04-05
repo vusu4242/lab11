@@ -1,19 +1,29 @@
-class Node:
-    def __init__(self, item, next=None):
-        self.item = item
-        self.next = next
+from collections import deque
 
 class FreqStack(object):
 
     def __init__(self):
-        self.head = None
+        self.freq = {}
+        self.group = {}
+        self.max_freq = 0
 
-    def push(self, val):
+    def push(self, val:int):
         """
         :type val: int
         :rtype: None
         """
-        self.head = Node(val, self.head)
+        if val in self.freq:
+            self.freq[val]+=1
+        else:
+            self.freq[val] = 1
+
+        f = self.freq[val]
+
+        if not f in self.group:
+            self.group[f] = deque
+
+        self.group[val].append(val)
+        self.max_freq = max(self.max_freq, f)
 
 
     def pop(self):
