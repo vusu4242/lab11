@@ -20,13 +20,15 @@ class MyQueue(object):
         """
         :rtype: int
         """
-        
+
 
     def peek(self):
         """
         :rtype: int
         """
-        
+        if not self.empty():
+            return self.head.item
+
 
     def empty(self):
         """
