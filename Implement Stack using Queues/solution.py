@@ -13,7 +13,7 @@ class MyStack(object):
         :type x: int
         :rtype: None
         """
-        
+        self.head = Node(x, self.head)
 
     def pop(self):
         """
