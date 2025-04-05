@@ -2,7 +2,7 @@ class Node:
     def __init__(self, item, next=None):
         self.item = item
         self.next = next
-        
+
 class MyStack(object):
 
     def __init__(self):
@@ -31,7 +31,7 @@ class MyStack(object):
         """
         :rtype: bool
         """
-        
+        return self.head is None
 
 
 # Your MyStack object will be instantiated and called as such:
