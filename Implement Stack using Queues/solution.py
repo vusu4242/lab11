@@ -19,13 +19,17 @@ class MyStack(object):
         """
         :rtype: int
         """
-        
+        if self.empty():
+            raise ValueError('Stack is empty')
+        item = self.head.item
+        self.head = self.head.next
+        return item
 
     def top(self):
         """
         :rtype: int
         """
-        
+        return self.head.item
 
     def empty(self):
         """
