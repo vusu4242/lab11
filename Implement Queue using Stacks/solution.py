@@ -32,7 +32,7 @@ class MyQueue(object):
         """
         :rtype: bool
         """
-        
+        return self.head is None
 
 
 # Your MyQueue object will be instantiated and called as such:
