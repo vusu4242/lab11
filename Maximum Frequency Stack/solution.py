@@ -16,12 +16,9 @@ class FreqStack(object):
             self.freq[val]+=1
         else:
             self.freq[val] = 1
-
         f = self.freq[val]
-
         if not f in self.group:
             self.group[f] = deque()
-
         self.group[f].append(val)
         self.max_freq = max(self.max_freq, f)
 
