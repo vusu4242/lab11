@@ -14,7 +14,13 @@ class MyQueue(object):
         :type x: int
         :rtype: None
         """
-        
+        if self.head:
+            self.tail.next = Node(x)
+            self.tail = self.tail.next
+        else:
+            self.tail = Node(x)
+            self.head = self.tail
+
 
     def pop(self):
         """
