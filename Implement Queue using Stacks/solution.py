@@ -27,7 +27,7 @@ class MyQueue(object):
         :rtype: int
         """
         if self.head:
-            item = self.head
+            item = self.head.item
             self.head = self.head.next
             return item
         raise ValueError('Oueue is empty')
