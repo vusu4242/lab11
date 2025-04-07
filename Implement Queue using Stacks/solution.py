@@ -1,55 +1,23 @@
-class Node:
-    def __init__(self, item, next=None):
-        self.item = item
-        self.next = next
-
-class MyQueue(object):
-
+class MyQueue:
     def __init__(self):
-        self.tail = None
-        self.head = None
+        self.stack_in = []
+        self.stack_out = []
 
     def push(self, x):
-        """
-        :type x: int
-        :rtype: None
-        """
-        if self.head:
-            self.tail.next = Node(x)
-            self.tail = self.tail.next
-        else:
-            self.tail = Node(x)
-            self.head = self.tail
-
+        self.stack_in.append(x)
 
     def pop(self):
-        """
-        :rtype: int
-        """
-        if self.head:
-            item = self.head.item
-            self.head = self.head.next
-            return item
-        raise ValueError('Oueue is empty')
+        self._transfer_if_needed()
+        return self.stack_out.pop()
 
     def peek(self):
-        """
-        :rtype: int
-        """
-        if not self.empty():
-            return self.head.item
-
+        self._transfer_if_needed()
+        return self.stack_out[-1]
 
     def empty(self):
-        """
-        :rtype: bool
-        """
-        return self.head is None
+        return not self.stack_in and not self.stack_out
 
-
-# Your MyQueue object will be instantiated and called as such:
-# obj = MyQueue()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.peek()
-# param_4 = obj.empty()
+    def _transfer_if_needed(self):
+        if not self.stack_out:
+            while self.stack_in:
+                self.stack_out.append(self.stack_in.pop())

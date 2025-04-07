@@ -1,46 +1,21 @@
-class Node:
-    def __init__(self, item, next=None):
-        self.item = item
-        self.next = next
+from collections import deque
 
-class MyStack(object):
-
+class MyStack:
     def __init__(self):
-        self.head = None
+        self.q1 = deque()
+        self.q2 = deque()
 
-    def push(self, x):
-        """
-        :type x: int
-        :rtype: None
-        """
-        self.head = Node(x, self.head)
+    def push(self,x):
+        self.q2.append(x)
+        while self.q1:
+            self.q2.append(self.q1.popleft())
+        self.q2, self.q1 = self.q1, self.q2
 
     def pop(self):
-        """
-        :rtype: int
-        """
-        if self.empty():
-            raise ValueError('Stack is empty')
-        item = self.head.item
-        self.head = self.head.next
-        return item
+        return self.q1.popleft()
 
     def top(self):
-        """
-        :rtype: int
-        """
-        return self.head.item
+        return self.q1[0]
 
     def empty(self):
-        """
-        :rtype: bool
-        """
-        return self.head is None
-
-
-# Your MyStack object will be instantiated and called as such:
-# obj = MyStack()
-# obj.push(x)
-# param_2 = obj.pop()
-# param_3 = obj.top()
-# param_4 = obj.empty()
+        return not self.q1
